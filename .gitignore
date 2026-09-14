@@ -10,6 +10,10 @@ docs/tfm-alineacion.md
 docs/openmetadata-basico.md
 docs/visualizaciones/*
 !docs/visualizaciones/README.md
+!docs/visualizaciones/arquitectura-ejecutiva.mmd
+!docs/visualizaciones/arquitectura-ejecutiva.svg
+!docs/visualizaciones/arquitectura-tecnica.mmd
+!docs/visualizaciones/arquitectura-tecnica.svg
 !docs/visualizaciones/ejemplos/
 !docs/visualizaciones/ejemplos/*
 !docs/visualizaciones/gold_*/

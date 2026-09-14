@@ -1,0 +1,13 @@
+flowchart LR
+  SQL[(SQL Server)] --> SQLJob["Incremental batch job"]
+  CSV[(CSV + embedded JSON)] --> CSVJob["Semi-structured batch job"]
+  Producer["Python producer"] --> Kafka[(Kafka)]
+  Kafka --> StreamJob["Structured Streaming job"]
+  Airflow["Airflow DAGs"] --> SQLJob
+  Airflow --> CSVJob
+  SQLJob --> Medallion["Delta Bronze · Silver · Gold"]
+  CSVJob --> Medallion
+  StreamJob --> Medallion
+  Medallion --> MinIO[(MinIO)]
+  Medallion --> Preview["CSV and JSONL previews"]
+

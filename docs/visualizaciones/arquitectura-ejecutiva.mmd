@@ -1,0 +1,12 @@
+flowchart LR
+  Sources["SQL Server · CSV · Kafka"]
+  Processing["Apache Spark"]
+  Lake["Delta Lake on MinIO"]
+  Orchestration["Apache Airflow"]
+  Evidence["Gold datasets and previews"]
+
+  Sources --> Processing
+  Orchestration --> Processing
+  Processing --> Lake
+  Lake --> Evidence
+
