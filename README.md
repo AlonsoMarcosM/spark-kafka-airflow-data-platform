@@ -1,8 +1,10 @@
-# Trabajo final PMD y ASBD - Catalogo de metadatos de datasets
+# Plataforma de datos Spark, Kafka y Airflow
 
-> **Despliegue público:** [Abrir despliegue](https://alonsomarcosm.github.io/Proyecto_Big_Data_PMD_ASBD/)
+> **Documentación técnica:** https://alonsomarcosm.github.io/spark-kafka-airflow-data-platform/
+>
+> **Caso de estudio:** https://alonsomarcosm.github.io/es/projects/big-data-catalog-batch-streaming/
 
-Proyecto Big Data reproducible para portfolio, basado en un caso de uso realista:
+Proyecto académico aplicado y reproducible, basado en un caso de uso realista:
 mantener un catalogo de datasets actualizado combinando batch y streaming con
 arquitectura Medallion (Bronze/Silver/Gold) sobre Delta Lake.
 
@@ -19,49 +21,18 @@ arquitectura Medallion (Bronze/Silver/Gold) sobre Delta Lake.
 - Batch semiestructurado desde CSV.
 - Streaming Kafka con join con batch (Silver SQL) y ventanas.
 
-## Diagramas (Mermaid)
+## Arquitectura
 
-### Arquitectura general
+### Vista ejecutiva
 
-```mermaid
-flowchart LR
-  subgraph Fuentes
-    SQL[(SQL Server)]
-    CSV[(CSV local)]
-    KP[Productor Kafka]
-  end
+![Arquitectura ejecutiva](docs/visualizaciones/arquitectura-ejecutiva.svg)
 
-  subgraph Orquestacion
-    AF[Airflow DAGs]
-  end
+### Vista técnica
 
-  subgraph Procesamiento
-    SP[Spark Jobs]
-  end
+![Arquitectura técnica](docs/visualizaciones/arquitectura-tecnica.svg)
 
-  subgraph Almacenamiento
-    MINIO[(MinIO - Delta Bronze/Silver/Gold)]
-  end
-
-  SQL --> SP
-  CSV --> SP
-  KP --> KAFKA[(Kafka topic dataset_updates)] --> SP
-  AF --> SP
-  SP --> MINIO
-```
-
-### Relacion DAGs vs Spark Apps
-
-```mermaid
-flowchart TB
-  DAG1[Airflow DAG\npmd_batch_snapshot_spark] --> APP1[Spark app\npmd_batch_snapshot.py]
-  DAG2[Airflow DAG\npmd_csv_batch_medallion_spark] --> APP2[Spark app\npmd_csv_batch_medallion.py]
-  DAG3[Airflow DAG\npmd_streaming_updates_spark] --> APP3[Spark app\npmd_streaming_updates.py]
-
-  APP1 --> BR1[Bronze/Silver/Gold SQL]
-  APP2 --> BR2[Bronze/Silver/Gold CSV]
-  APP3 --> BR3[Bronze/Silver/Gold Kafka]
-```
+Las fuentes Mermaid permanecen versionadas junto a los SVG para que el render sea
+reproducible y comprobable en CI.
 
 ## Estado y objetivos
 

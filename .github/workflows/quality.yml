@@ -1,0 +1,46 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install quality dependencies
+        run: python -m pip install pytest pyyaml ruff
+      - name: Static checks
+        run: ruff check .
+      - name: Unit and contract tests
+        run: pytest -q
+      - name: Validate Docker Compose
+        run: docker compose -f docker-compose/docker-compose.yml config --quiet
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify rendered architecture diagrams
+        run: |
+          npx --yes @mermaid-js/mermaid-cli@11.12.0 -i docs/visualizaciones/arquitectura-ejecutiva.mmd -o docs/visualizaciones/arquitectura-ejecutiva.svg
+          npx --yes @mermaid-js/mermaid-cli@11.12.0 -i docs/visualizaciones/arquitectura-tecnica.mmd -o docs/visualizaciones/arquitectura-tecnica.svg
+          git diff --exit-code -- docs/visualizaciones/*.svg
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

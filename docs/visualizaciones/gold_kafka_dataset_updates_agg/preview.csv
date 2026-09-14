@@ -1,0 +1,4 @@
+dataset_id,event_type,owner,events_count,window_start,window_end
+ds_003,dataset_updated,equipo_c,3,2026-01-29 19:49:00,2026-01-29 19:49:30
+ds_002,dataset_updated,equipo_b,3,2026-01-29 19:49:00,2026-01-29 19:49:30
+ds_001,dataset_updated,equipo_a,3,2026-01-29 19:49:00,2026-01-29 19:49:30

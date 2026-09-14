@@ -1,19 +1,133 @@
 {
-  "schema_version": 1,
-  "repository": "AlonsoMarcosM/Proyecto_Big_Data_PMD_ASBD",
-  "repository_url": "https://github.com/AlonsoMarcosM/Proyecto_Big_Data_PMD_ASBD",
-  "title": {"es": "Catálogo Big Data PMD y ASBD", "en": "PMD and ASBD Big Data Catalogue"},
-  "summary": {
-    "es": "Catálogo de metadatos con batch, streaming y arquitectura Medallion.",
-    "en": "Metadata catalogue with batch, streaming and a Medallion architecture."
+  "schema_version": 2,
+  "repository": "AlonsoMarcosM/spark-kafka-airflow-data-platform",
+  "repository_url": "https://github.com/AlonsoMarcosM/spark-kafka-airflow-data-platform",
+  "slug": "big-data-catalog-batch-streaming",
+  "title": {
+    "es": "Plataforma de datos Spark, Kafka y Airflow",
+    "en": "Spark, Kafka and Airflow data platform"
   },
-  "technologies": ["Airflow", "Spark", "Kafka", "Delta Lake", "MinIO", "Docker"],
-  "deployment": {
-    "type": "documentation",
-    "provider": "github-pages",
-    "mode": "static-evidence",
-    "source_branch": "main",
-    "status": "live",
-    "url": "https://alonsomarcosm.github.io/Proyecto_Big_Data_PMD_ASBD/"
-  }
+  "lifecycle": "academic-delivered",
+  "classification": "applied-academic-project",
+  "problem": {
+    "es": "Mantener un catálogo vivo de metadatos combinando fuentes estructuradas, semiestructuradas y eventos en tiempo real.",
+    "en": "Maintain a living metadata catalogue by combining structured, semi-structured and real-time event sources."
+  },
+  "architecture": {
+    "es": "SQL Server, CSV y Kafka alimentan jobs Spark que publican capas Bronze, Silver y Gold sobre Delta Lake y MinIO. Airflow orquesta los flujos batch.",
+    "en": "SQL Server, CSV and Kafka feed Spark jobs that publish Bronze, Silver and Gold layers on Delta Lake and MinIO. Airflow orchestrates the batch flows."
+  },
+  "dataFlow": {
+    "es": "Fuentes → ingesta batch o streaming → Spark → Delta Lake Medallion → previews Gold verificables.",
+    "en": "Sources → batch or streaming ingestion → Spark → Medallion Delta Lake → verifiable Gold previews."
+  },
+  "stack": [
+    "Python",
+    "Apache Spark",
+    "Apache Airflow",
+    "Apache Kafka",
+    "Delta Lake",
+    "MinIO",
+    "SQL Server",
+    "Docker Compose"
+  ],
+  "team": [
+    {
+      "name": "Alonso Marcos Muñoz",
+      "role": {
+        "es": "Autor y desarrollador",
+        "en": "Author and developer"
+      }
+    }
+  ],
+  "ownership": {
+    "es": [
+      "Diseño del caso de uso y de la arquitectura Medallion",
+      "Implementación de los jobs Spark y de los DAGs de Airflow",
+      "Integración reproducible de Kafka, SQL Server, MinIO y Delta Lake"
+    ],
+    "en": [
+      "Use-case and Medallion architecture design",
+      "Implementation of Spark jobs and Airflow DAGs",
+      "Reproducible integration of Kafka, SQL Server, MinIO and Delta Lake"
+    ]
+  },
+  "verifiedMetrics": [
+    {
+      "label": {
+        "es": "Patrones de ingesta",
+        "en": "Ingestion patterns"
+      },
+      "value": "3",
+      "detail": {
+        "es": "SQL batch incremental, CSV batch y Kafka streaming",
+        "en": "Incremental SQL batch, CSV batch and Kafka streaming"
+      },
+      "evidence": "docs/ejecucion-y-pruebas.md",
+      "source_type": "repository-evidence"
+    },
+    {
+      "label": {
+        "es": "Capas de datos",
+        "en": "Data layers"
+      },
+      "value": "3",
+      "detail": {
+        "es": "Bronze, Silver y Gold en cada pipeline",
+        "en": "Bronze, Silver and Gold in every pipeline"
+      },
+      "evidence": "docs/arquitectura-pmd.md",
+      "source_type": "repository-evidence"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "architecture",
+      "path": "docs/visualizaciones/arquitectura-ejecutiva.svg",
+      "label": {
+        "es": "Arquitectura ejecutiva",
+        "en": "Executive architecture"
+      }
+    },
+    {
+      "type": "architecture",
+      "path": "docs/visualizaciones/arquitectura-tecnica.svg",
+      "label": {
+        "es": "Arquitectura técnica",
+        "en": "Technical architecture"
+      }
+    }
+  ],
+  "assets": [
+    "docs/visualizaciones/arquitectura-ejecutiva.svg",
+    "docs/visualizaciones/arquitectura-tecnica.svg"
+  ],
+  "limitations": {
+    "es": [
+      "Entorno local reproducible con datos de demostración, no una plataforma empresarial en producción",
+      "Las credenciales incluidas son exclusivamente valores locales de desarrollo"
+    ],
+    "en": [
+      "Reproducible local environment with demo data, not an enterprise production platform",
+      "Included credentials are local development values only"
+    ]
+  },
+  "links": [
+    {
+      "type": "technical_docs",
+      "url": "https://alonsomarcosm.github.io/spark-kafka-airflow-data-platform/"
+    },
+    {
+      "type": "case_study",
+      "url": "https://alonsomarcosm.github.io/es/projects/big-data-catalog-batch-streaming/"
+    },
+    {
+      "type": "architecture",
+      "url": "https://alonsomarcosm.github.io/spark-kafka-airflow-data-platform/docs/visualizaciones/arquitectura-ejecutiva.svg"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/AlonsoMarcosM/spark-kafka-airflow-data-platform"
+    }
+  ]
 }
