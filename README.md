@@ -4,6 +4,17 @@
 >
 > **Caso de estudio:** https://alonsomarcosm.github.io/es/projects/big-data-catalog-batch-streaming/
 
+![Apache Spark](https://img.shields.io/badge/Apache%20Spark-4.0.1-E25A1C?logo=apachespark&logoColor=white)
+![Delta Lake](https://img.shields.io/badge/Delta%20Lake-4.0.0-00ADD4)
+![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-4.1.1-231F20?logo=apachekafka&logoColor=white)
+![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-3.0.6-017CEE?logo=apacheairflow&logoColor=white)
+![MinIO](https://img.shields.io/badge/MinIO-S3%20local-C72E49?logo=minio&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC2927)
+![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+![Diagrama: SQL Server, CSV y Kafka alimentan Spark, orquestado por Airflow, que escribe capas Bronze, Silver y Gold de Delta Lake sobre MinIO](docs/portada.png)
+
 Proyecto académico aplicado y reproducible, basado en un caso de uso realista:
 mantener un catalogo de datasets actualizado combinando batch y streaming con
 arquitectura Medallion (Bronze/Silver/Gold) sobre Delta Lake.
